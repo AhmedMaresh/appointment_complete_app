@@ -16,6 +16,15 @@ SignupResponse _$SignupResponseFromJson(Map<String, dynamic> json) =>
       code: (json['code'] as num?)?.toInt(),
     );
 
+// ignore: unused_element
+Map<String, dynamic> _$SignupResponseToJson(SignupResponse instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'data': instance.userData,
+      'status': instance.status,
+      'code': instance.code,
+    };
+
 UserData _$UserDataFromJson(Map<String, dynamic> json) => UserData(
   token: json['token'] as String?,
   userName: json['username'] as String?,
