@@ -1,3 +1,4 @@
+import 'package:appointment_complete_flutter_app/core/helpers/constants.dart';
 import 'package:appointment_complete_flutter_app/core/routing/app_router.dart';
 import 'package:appointment_complete_flutter_app/core/routing/routes.dart';
 import 'package:appointment_complete_flutter_app/core/theme/colors.dart';
@@ -21,7 +22,7 @@ class DocApp extends StatelessWidget {
           primaryColor: ColorsManager.mainBlue,
           scaffoldBackgroundColor: Colors.white,
         ),
-        initialRoute: Routes.onBoardingScreen,
+        initialRoute: isLoggedin ? Routes.homeScreen : Routes.loginScreen,
         onGenerateRoute: appRouter.generateRoute,
       ),
     );

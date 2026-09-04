@@ -1,5 +1,6 @@
 import 'package:appointment_complete_flutter_app/core/di/dependency_injection.dart';
 import 'package:appointment_complete_flutter_app/core/routing/routes.dart';
+import 'package:appointment_complete_flutter_app/features/home/logic/home_cubit.dart';
 import 'package:appointment_complete_flutter_app/features/home/ui/home_screen.dart';
 import 'package:appointment_complete_flutter_app/features/login/logic/cubit/login_cubit.dart';
 import 'package:appointment_complete_flutter_app/features/login/ui/login_screen.dart';
@@ -10,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRouter {
-  Route generateRoute(RouteSettings settings) {
+  Route? generateRoute(RouteSettings settings) {
     // this arguments is to be passed in any screen like this ( arguments as ClassName )
     // ignore: unused_local_variable
     final arguments = settings.arguments;
@@ -33,13 +34,14 @@ class AppRouter {
           ),
         );
       case Routes.homeScreen:
-        return MaterialPageRoute(builder: (_) => HomeScreen());
-      default:
         return MaterialPageRoute(
-          builder: (_) => const Scaffold(
-            body: Center(child: Text('No route defined for this path')),
+          builder: (_) => BlocProvider(
+            create: (context) => HomeCubit(getIt())..getSpecialization(),
+            child: HomeScreen(),
           ),
         );
+      default:
+        return null;
     }
   }
 }
